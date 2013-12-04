@@ -79,7 +79,7 @@ public class CustomerController {
 		}
 		customer.setCreated(new Date());
 
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
 	// curl -i -X DELETE -H "Content-Type: application/json" http://localhost:2001/spring/customers/1
