@@ -5,7 +5,7 @@ private static final long serialVersionUID = 1L;
 	
 	private static final String MESSAGE_FORMAT = "The mandatory argument '%s' is missing in the request.";
 	
-	public MandatoryArgumentMissingException(String customerId) {
-        super(String.format(MESSAGE_FORMAT, customerId));
+	public MandatoryArgumentMissingException(String missingArgumentName) {
+        super(String.format(MESSAGE_FORMAT, missingArgumentName));
     }
 }

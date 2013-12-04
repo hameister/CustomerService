@@ -75,7 +75,7 @@ public class CustomerController {
 		if (customerData.containsKey("Name")) {
 			customer.setName(customerData.get("Name"));
 		} else {
-			throw new MandatoryArgumentMissingException("Request does not contain the key 'Name'");
+			throw new MandatoryArgumentMissingException("'Name'");
 		}
 		customer.setCreated(new Date());
 
