@@ -29,7 +29,7 @@ public class CustomerControllerRESTassuredTest {
 
 	private static final String ANY_NAME = "anyName";
 
-	private static final String INVALID_ARGUTMENT = null;
+	private static final String INVALID_ARGUMENT = "invalidArgument";
 	
 	RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
 	
@@ -141,7 +141,7 @@ public class CustomerControllerRESTassuredTest {
 		
 		given()
 			.spec(requestSpecBuilder.build())
-			.body("{\""+INVALID_ARGUTMENT+"\":\""+ANY_NAME+"\"}")
+			.body("{\""+INVALID_ARGUMENT+"\":\""+ANY_NAME+"\"}")
 			.pathParam("id", customerId)
 		.when()
 			.put("/{id}")
