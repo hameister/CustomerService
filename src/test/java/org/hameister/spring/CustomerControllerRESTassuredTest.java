@@ -25,7 +25,7 @@ import com.jayway.restassured.response.Response;
 
 public class CustomerControllerRESTassuredTest {
 
-	private static final String CUSTOMUER_ID_DOES_NOT_EXIST = "doesNotExist";
+	private static final String CUSTOMER_ID_DOES_NOT_EXIST = "doesNotExist";
 
 	private static final String ANY_NAME = "anyName";
 
@@ -60,7 +60,6 @@ public class CustomerControllerRESTassuredTest {
 	
 		given()
 			.spec(requestSpecBuilder.build())
-			.body("")
 			.log().all()
 		.when()
 			.post("/")
@@ -100,8 +99,8 @@ public class CustomerControllerRESTassuredTest {
 			.statusCode(200)
 			.contentType(ContentType.JSON)
 			.body("id", is(customerId))
-			.body("name", is(nullValue()));
-		
+			.body("name", is(nullValue()))
+			.body("created", is(nullValue()));	
 	}
 	
 	@Test
@@ -127,12 +126,12 @@ public class CustomerControllerRESTassuredTest {
 		given()
 			.spec(requestSpecBuilder.build())
 			.body("{\"Name\":\""+ANY_NAME+"\"}")
-			.pathParam("id", CUSTOMUER_ID_DOES_NOT_EXIST)
+			.pathParam("id", CUSTOMER_ID_DOES_NOT_EXIST)
 		.when()
 			.put("/{id}")
 		.then()
 			.statusCode(404)
-			.body(is("{\"reason\":\"Customer with id '"+CUSTOMUER_ID_DOES_NOT_EXIST+"' not found.\"}"));
+			.body(is("{\"reason\":\"Customer with id '"+CUSTOMER_ID_DOES_NOT_EXIST+"' not found.\"}"));
 	}
 	
 	@Test
@@ -155,24 +154,26 @@ public class CustomerControllerRESTassuredTest {
 	public void getANotExistingCustomerShouldReturnHTTP404() throws Exception {
 		given()
 			.spec(requestSpecBuilder.build())
-			.pathParam("id", CUSTOMUER_ID_DOES_NOT_EXIST)
+			.pathParam("id", CUSTOMER_ID_DOES_NOT_EXIST)
 		.when()
 			.get("/{id}")
 		.then()
 			.statusCode(404)
-			.body(is("{\"reason\":\"Customer with id '"+CUSTOMUER_ID_DOES_NOT_EXIST+"' not found.\"}"));
+			.body(is("{\"reason\":\"Customer with id '"+CUSTOMER_ID_DOES_NOT_EXIST+"' not found.\"}"));
 	}
+	
+	
 	
 	@Test
 	public void deleteANotExistingCustomerShouldReturnHTTP404() throws Exception {
 		given()
 			.spec(requestSpecBuilder.build())
-			.pathParam("id", CUSTOMUER_ID_DOES_NOT_EXIST)
+			.pathParam("id", CUSTOMER_ID_DOES_NOT_EXIST)
 		.when()
 			.delete("/{id}")
 		.then()
 			.statusCode(404)
-			.body(is("{\"reason\":\"Customer with id '"+CUSTOMUER_ID_DOES_NOT_EXIST+"' not found.\"}"));
+			.body(is("{\"reason\":\"Customer with id '"+CUSTOMER_ID_DOES_NOT_EXIST+"' not found.\"}"));
 	}
 	
 	
